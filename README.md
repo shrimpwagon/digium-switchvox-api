@@ -92,7 +92,7 @@ Digium Switchvox API highly encourages sending in pull requests.  When submittin
 
 # Changelog
 
-## 0.1.0
+## 1.0.0
 
- - Initialized project
+ - Basic funcationality to call API methods with XML or JSON
 
