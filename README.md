@@ -4,20 +4,67 @@
 
 PHP wrapper for the Digium Switchvox API.
 
-[Digium Doc: Get Started](http://developers.digium.com/switchvox/?pageView=getStarted)
-
-[Digium Doc: Test Suite](http://developers.digium.com/switchvox/?pageView=testSuite)
-
 # Features
-This makes simple Switchvox's requests.
+This makes simple Switchvox's requests in JSON or XML.
 
 Digium's [PHP client library](http://developers.digium.com/switchvox/?pageView=phpLibrary) requires a PEAR and PECL package whereas this implementation does not require them.
 
 # Usage
-...coming soon
+
+	$client = new Switchvox\SwitchvoxClient();
+	$client->user = 'admin';
+	$client->password = '1234';
+	$client->uri = 'https://somedigiumendpoint.com';
+
+	// By default it will not care if the SSL cert is valid, to change:
+	$client->strict_ssl = true;
+
+	// Timeout in seconds, default is 10 seconds
+	$client->timeout = 15;
+
+	// If JSON is preferred (default):
+	$client->data_type = 'json';
+
+	// If XML is preferred:
+	$client->data_type = 'xml';
+
+	// Request a method with parameters
+	$params = [
+		'sort_field' => 'number',
+		'sort_order' => 'ASC',
+		'items_per_page' => '9999',
+		'page_number' => '1'
+	];
+
+	$response = $client->send('switchvox.directories.getExtensionList', $params);
+
+	// Request without parameters
+	$response = $client->send('switchvox.directories.getInfo');
+
+# Notes
+The `strict_ssl` feature correlates to the [Httpful\Request timeout](http://phphttpclient.com/docs/class-Httpful.Request.html#_withoutStrictSSL).
+
+All Digium Switchvox web service methods can be found [here](http://developers.digium.com/switchvox/wiki/index.php/WebService_methods).
+
+The `send` method returns a [Httpful\Response object](http://phphttpclient.com/docs/class-Httpful.Response.html).
+
+# Testing
+To run tests in phpunit you must use your own environment variables for user and password:
+
+	$ SWITCHVOX_USER=<user> SWITCHVOX_PASSWORD=<password> phpunit -v --debug
+
+For development you can get a [free demo Digium Switchbox account](https://www.digium.com/products/switchvox/free-demo).
+
+They will send you a user name and passowrd to your email address.
+
+Once you log into the admin portal take note of the domain name and use that as the uri.
+
+The `uri` property for this client and the phpunit.xml file is pre-populated with:
+
+`https://switchvoxdemo1.digiumcloud.net`
 
 # Requirements
-- PHP >= 5.0
+- PHP >= 5.4
 - XMLWriter, if using XML, bundled and enabled as of PHP 5.1.2
 
 # Installation

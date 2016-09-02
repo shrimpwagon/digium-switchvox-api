@@ -2,6 +2,7 @@
 
 namespace Switchvox;
 
+use DCarbone\XMLWriterPlus;
 use Httpful\Request;
 
 class SwitchvoxClient
@@ -16,7 +17,7 @@ class SwitchvoxClient
 
 	public $data_type = 'json';
 
-	public $timeout = null;
+	public $timeout = 10;
 
 	public function send($method, $params = [])
 	{
@@ -38,6 +39,39 @@ class SwitchvoxClient
 		elseif( $this->data_type = 'xml' )
 		{
 			$request->sendsXml()->expectsXml();
+
+			$xmlWriterPlus = new XMLWriterPlus();
+
+			$xmlWriterPlus->openMemory();
+
+			$xmlWriterPlus->setIndent(true);
+
+			$xmlWriterPlus->startElement('request');
+
+			$xmlWriterPlus->startAttribute('method');
+
+			$xmlWriterPlus->text($method);
+
+			$xmlWriterPlus->endAttribute();
+
+			$xmlWriterPlus->startElement('parameters');
+
+			foreach ($params as $param => $value)
+			{
+				$xmlWriterPlus->startElement($param);
+
+				$xmlWriterPlus->text($value);
+
+				$xmlWriterPlus->endElement();
+			}
+
+			$xmlWriterPlus->endElement();
+
+			$xmlWriterPlus->endElement();
+
+			$xmlWriterPlus->endDocument();
+
+			$body = $xmlWriterPlus->outputMemory();
 		}
 
 		else
