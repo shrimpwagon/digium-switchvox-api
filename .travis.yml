@@ -1,20 +1,19 @@
 language: php
-
 php:
-  - 5.3
-  - 5.4
-  - 5.5
-  - 5.6
-  - 7.0
-  - hhvm
-  
+- 5.3
+- 5.4
+- 5.5
+- 5.6
+- 7.0
+- hhvm
 matrix:
   fast_finish: true
   allow_failures:
-    - php: 7.0
-
+  - php: 7.0
 before_script:
-  - composer install
-
+- composer install
 script:
-  - phpunit -c ./tests/phpunit.xml
+- phpunit -c ./tests/phpunit.xml
+env:
+  global:
+    secure: TJEoFENURDMBhv9kDL1mq/mCgRjV3F79IboUQMYBXMWYQCK2XRwfz3lycWg1j2xzcSXjUow5PVEmadIEkAklahQdV16DQ3JP3BwFzJkbPUG+iSLaYsze6m4/J6OIp3I0S5fZrBoPBkhsLKCb1RvMxZfLDZMA5srrtOuQrTKQBX85zM09rvDBLu8IUKYPrdazO0WYbFz1xiE+0SdxKTFZzqRTR6Yxkue7Ao+gKzwSshlYlSGHQu+Sb+gr2BZM7IiKdmM4k90bW/06fd4mXy1dqcsdOiQgTisb0BWeTPx+eho5YjvBCk41co6auEphnA7Hcv/t58Ym4puJFIQsDi8Dduw2k38tPdVXvCiiL4KsN7wdDyFkuwco9ZXOUhMKa8ZU6wA2Ooy3V5AWOHeM4xD9n95JjmYQRfX2kKjbuMoZxg3+8jCEU7m/5rJZTWZx210Ux5RtVPRAbXr0pCIPnE3kpELVOF7X/5/lVysecaz7MKmJog4nov/8i4WkvAs2zTJW0Yj+eBHoeataSJUvyw07+CY5dHjYrMgiHeNpXzh0uin/f86+Yi4wWSwEXr96ueKlF9DHQghPFFJ//LEmYXlBi4HhLFD/uZ1OANdcmc9xPCttaTJmJuKKHu1kGK8Dkko1F/uzN+wnJItlLnrnOWY1Mtcz5wkAb75S2IW4qPd2pCI=
