@@ -1,0 +1,15 @@
+<phpunit bootstrap="../vendor/autoload.php">
+    <testsuites>
+        <testsuite name="Switchvox">
+            <directory>.</directory>
+        </testsuite>
+    </testsuites>
+    <php>
+    	<env name="SWITCHVOX_TIMEOUT" value="5"/>
+    	<env name="SWITCHVOX_URI" value="https://switchvoxdemo1.digiumcloud.net"/>
+    	<env name="SWITCHVOX_DATA_TYPE" value="json"/>
+    </php>
+    <logging>
+        <log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/>
+    </logging>
+</phpunit>

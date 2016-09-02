@@ -1,0 +1,26 @@
+{
+    "name": "shrimpwagon/digium-switchvox-api",
+    "description": "PHP wrapper for Switchvox API",
+    "homepage": "http://github.com/shrimpwagon/digium-switchvox-api",
+    "keywords": ["digium", "switchvox", "xml", "json", "api"],
+    "version": "0.1.0",
+    "require": {
+        "dcarbone/xml-writer-plus" : "0.4.*",
+        "nategood/httpful": "^0.2.20"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Shawn Welch",
+            "email": "shawnmatthewwelch@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "Switchvox": "src/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    }
+}
