@@ -23,7 +23,7 @@ class SwitchvoxClient
 	{
 		$request = Request::post($this->uri . '/' . $this->data_type)
 
-			->authenticateWithDigest($this->user, $this->password)
+			->authenticateWithBasic($this->user, $this->password)
 
 			->timeout($this->timeout);
 
